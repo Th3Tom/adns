@@ -53,7 +53,7 @@ void gpt_init()
 	/*		prescale:	1					*/
 	/*		ctc overflow value:	16			*/
 	/****************************************/
-	
+	/*
 	//ctc
 	TCCR0A |=  (1 << WGM10);
 	TCCR0A &= ~(1 << WGM00);
@@ -68,7 +68,8 @@ void gpt_init()
 	
 	//enable interrupt
 	TIMSK0 |= (1 << OCIE0A);
-	
+	//*/
+
 	sei();
 }
 
@@ -126,6 +127,7 @@ void delay(uint16_t time)
 	gpt_releaseTime(timer);
 }
 
+/*
 void delay_us(uint16_t time)
 {
 	if(time > 32000)
@@ -153,6 +155,7 @@ void delay_us(uint16_t time)
 	TCCR0B &= ~(1 << CS01);
 	//TCCR0B &= ~((1 << CS02) | (1 << CS01));
 }
+//*/
 
 ISR(TIMER2_COMPA_vect)
 {
@@ -175,8 +178,9 @@ ISR(TIMER2_COMPA_vect)
 	}
 }
 
+/*
 ISR(TIMER0_COMPA_vect)
 {
 	overflowDelay_us++;
 }
-
+//*/

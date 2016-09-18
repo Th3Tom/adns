@@ -111,6 +111,6 @@ void gpt_releaseTime(int8_t timerID);
 void gpt_setTime(uint16_t OVFtime, int8_t timeID);
 
 void delay(uint16_t time);
-void delay_us(uint16_t time);
+//void delay_us(uint16_t time);
 
 #endif /* GPT_H_ */

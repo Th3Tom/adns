@@ -4,7 +4,7 @@
  * Created: 15.06.2016 10:13:27
  *  Author: Tom_
  */ 
-
+ 
 #include <avr/io.h>
 #include <avr/pgmspace.h>
 #include "general.h"
@@ -84,11 +84,11 @@ void adns9800_write(uint8_t reg, uint8_t data)
 	spi_sendData(reg | 0x80);
 	spi_sendData(data);
 	
-	//delay(1);
-	delay_us(20);
+	delay(1);
+	//delay_us(20);
 	adns9800_com_end();
-	//delay(1);
-	delay_us(100);
+	delay(1);
+	//delay_us(100);
 }
 
 uint8_t adns9800_read(uint8_t reg)
@@ -100,15 +100,15 @@ uint8_t adns9800_read(uint8_t reg)
 	//delay(1);
 
 	spi_sendData(reg & 0x7f);
-	//delay(1);
-	delay_us(100);
+	delay(1);
+	//delay_us(100);
 	data = spi_receiveData();
 	
-	//delay(1);
-	delay_us(1);
+	delay(1);
+	//delay_us(1);
 	adns9800_com_end();
-	//delay(1);
-	delay_us(19);
+	delay(1);
+	//delay_us(19);
 
 	return data;
 }
@@ -124,15 +124,16 @@ void adns9800_firmeware()
 	
 	adns9800_com_beginn();
 	spi_sendData(REG_SROM_Load_Burst | 0x80);
-	//delay(1);
-	delay_us(15);
+	delay(1);
+	//delay_us(15);
 	
 	for(uint16_t i = 0; i < firmware_length; i++){
 		c = pgm_read_byte(firmware_data + i);
 		spi_sendData(c);
 		
 		//delay(1);
-		delay_us(15);
+		//delay_us(15);
+		for(uint8_t i = 0; i < 7; i++);
 	}
 	adns9800_com_end();
 }
